@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.bellski'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.vertispan.com/gwt-snapshot' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+    annotationProcessor group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
+    compile 'org.gwtproject.rpc:serialization-api:1.0-SNAPSHOT'
+    compile 'org.gwtproject.rpc:gwt-jre-serializers:1.0-SNAPSHOT'
+
+    compile 'org.gwtproject.rpc:serialization-processor:1.0-SNAPSHOT'
+    annotationProcessor 'org.gwtproject.rpc:serialization-processor:1.0-SNAPSHOT'
+
+    compile 'org.gwtproject.rpc:string-serializer-streams:1.0-SNAPSHOT'
+}
+
+compileJava() {
+    options.compilerArgs += "-Aserial.knownSubtypes=jre.txt"
+}
